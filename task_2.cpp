@@ -1,37 +1,15 @@
 //
-// Created by james on 02/03/2020.
+// Created by james on 16/03/2020.
 //
 
 #include <iostream>
-#include "cat.h"
+#include "Shape.h"
 
-int main(int argc, char* argv[]) {
-    Cat a("Garfield");
-
-    std::cout << a.get_name() << " has "
-              << a.get_lives() << " lives." << std::endl;
-
-    Cat b("Mog", 10);
-
-    std::cout << b.get_name() << " has "
-              << b.get_lives() << " lives." << std::endl;
-
-    b.set_lives(42);
-    std::cout << b.get_name() << " has "
-              << b.get_lives() << " lives." << std::endl;
-    b.set_name("Prince");
-    std::cout << b.get_name() << " has "
-              << b.get_lives() << " lives." << std::endl;
-    b.set_lives(8);
-    std::cout << b.get_name() << " has "
-              << b.get_lives() << " lives." << std::endl;
-    b.set_lives(0);
-    std::cout << b.get_name() << " has "
-              << b.get_lives() << " lives." << std::endl;
-    b.set_lives(0);
-    std::cout << b.get_name() << " has "
-              << b.get_lives() << " lives." << std::endl;
-
+int main (int argc, char* argv []) {
+    Shape *x = new Rectangle (0 , 0 , 1, 1); // x0, y0, x1, y1
+    std :: cout << x -> to_string() << std :: endl ;
+    x -> centre_at(-2.5 , 2.5);
+    std :: cout << x -> to_string() << std :: endl ;
+    delete x ;
     return 0;
 }
-

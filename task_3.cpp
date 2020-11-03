@@ -1,36 +1,40 @@
 //
-// Created by james on 02/03/2020.
+// Created by james on 16/03/2020.
 //
 
-#include "cat.h"
 #include <iostream>
+#include "Shape.h"
+#include <stdlib.h>
 
-int main(int argc, char* argv[]){
-    if (argc % 2 != 0) {
-        argc = argc - 1;
+int main (int argc, char* argv []) {
+    Shape** shapes = new Shape*[10];
+
+    shapes[0] = new Triangle(0, 0, 1, 1, 2, 0);
+    shapes[1] = new Circle(4,4,2);
+    shapes[2] = new Rectangle(1,1,3,3);
+    shapes[3] = new Circle(5,2,1.5);
+    shapes[4] = new Rectangle(-1,0, -3, 2);
+    shapes[5] = new Triangle(5,6,5,8,7,9);
+    shapes[6] = new Rectangle(0,5,2,8);
+    shapes[7] = new Circle(5,5,4);
+    shapes[8] = new Triangle(4,2,6,4,7,2);
+    shapes[9] = new Circle(-3,-5,6);
+
+    unsigned int ARR_SIZE = 10;
+    for (unsigned int i = 0; i < ARR_SIZE; i++){
+        std::cout << shapes[i] -> to_string() << std::endl;
     }
 
-    unsigned int ARRAY_SIZE = argc / 2;
-    unsigned int num_cats = 0;
-    Cat* cats = new Cat[ARRAY_SIZE];
+    std::cout << "\nMixing up position of shapes" << std::endl;
 
-    std::cout << "Allocating clowder of size " << ARRAY_SIZE << std::endl;
-
-    for (int i = 1; i < argc; i += 2){
-        if (argv[i+1] != nullptr){
-            cats[num_cats] = Cat(argv[i], atoi(argv[i+1]));
-        } else {
-            cats[num_cats] = Cat(argv[i]);
-        }
-        num_cats++;
+    for (unsigned int j = 0; j < ARR_SIZE; j++){
+        float rand_x = rand() % 21 + (-10);
+        float rand_y = rand() % 21 + (-10);
+        shapes[j] -> centre_at(rand_x, rand_y);
+        std::cout << shapes[j] -> to_string() << std::endl;
+        shapes[j] = nullptr;
     }
 
-    for (int i = 0; i < num_cats; i++) {
-        std::cout << cats[i].get_name() << " has "
-                  << cats[i].get_lives() << " lives." << std::endl;
-    }
-
-    delete[] cats;
-
+    delete[] shapes;
     return 0;
 }
