@@ -1,15 +1,25 @@
 //
-// Created by james on 16/03/2020.
+// Created by james on 24/03/2020.
 //
 
 #include <iostream>
-#include "Shape.h"
+#include <unordered_set>
 
-int main (int argc, char* argv []) {
-    Shape *x = new Rectangle (0 , 0 , 1, 1); // x0, y0, x1, y1
-    std :: cout << x -> to_string() << std :: endl ;
-    x -> centre_at(-2.5 , 2.5);
-    std :: cout << x -> to_string() << std :: endl ;
-    delete x ;
+#include "cat.h"
+
+int main(int argc, char* argv[]) {
+    std::unordered_set<Cat> unique_cats;
+    unique_cats.insert(Cat("Garfield", 42));
+    unique_cats.insert(Cat("Garfield", 10));
+    unique_cats.insert(Cat("Catbert", 666));
+    unique_cats.insert(Cat("Toothless", 13));
+    unique_cats.insert(Cat("Garfield", 42));
+    unique_cats.insert(Cat("Garfield", 42));
+
+    std::cout << std::endl << "Unique Cats" << std::endl;
+    for (auto it  = unique_cats.begin(); it != unique_cats.end(); it++) {
+        std::cout << *it << std::endl;
+    }
+
     return 0;
 }

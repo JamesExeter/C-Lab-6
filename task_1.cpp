@@ -1,15 +1,14 @@
 //
-// Created by james on 16/03/2020.
+// Created by james on 23/03/2020.
 //
 
-# include <iostream>
-#include "Shape.h"
+#include <iostream>
+#include "cat.h"
 
-int main (int argc, char* argv []) {
-    Shape *x = new Circle (0 , 0 , 1); // x , y , r
-    std :: cout << x -> to_string() << std :: endl ;
-    x -> centre_at(2 , 3);
-    std :: cout << x -> to_string() << std :: endl ;
-    delete x ;
+int main(int argc, char* argv[]) {
+    Cat a("Garfield", 42);
+    std::cout << std::hash<Cat>()(a)
+              << " = " << a << std::endl;
+
     return 0;
 }

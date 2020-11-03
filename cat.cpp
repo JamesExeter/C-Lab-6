@@ -5,35 +5,15 @@
 #include "cat.h"
 #include <iostream>
 
-Cat::Cat(const std::string name) : name(name), lives(9){
-    std::cout << "Constructor called with name..." << std::endl;
-}
-
-Cat::Cat(const std::string name, unsigned int lives) : name(name), lives(lives){
-    std::cout << "Constructor called with name and lives..." << std::endl;
-}
-
-Cat::Cat() : name("Tom"), lives(9){
-    std::cout << "Default constructor called..." << std::endl;
-}
-
-Cat::~Cat(){
-    std::cout << "Destructor called..." << std::endl;
-}
+Cat::Cat(const std::string name, unsigned int lives) : name(name), lives(lives){}
 
 void Cat::set_name(const std::string& new_name)  {
-    std::cout << "set_name called..." << std::endl;
     this->name = new_name;
 }
 
 void Cat::set_lives(const unsigned int& new_lives) {
-    std::cout << "set_lives called..." << std::endl;
     if (new_lives < this->lives) {
         this->lives = new_lives;
-        if (this->lives == 0){
-            std::string new_name = "The Cat formerly known as " + Cat::get_name();
-            Cat::set_name(new_name);
-        }
     };
 }
 
@@ -44,3 +24,24 @@ std::string Cat::get_name() const {
 unsigned int Cat::get_lives() const {
     return lives;
 }
+
+std::ostream& operator<<(std::ostream& os, const Cat &a){
+    os << a.name << " has " << a.lives << " lives...";
+    return os;
+}
+
+bool operator==(const Cat &lhs, const Cat &rhs) {
+    return (lhs.name == rhs.name) && (lhs.lives == rhs.lives);
+}
+
+bool operator<(const Cat &lhs, const Cat &rhs) {
+    if (lhs.name < rhs.name){
+        return true;
+    } else if (lhs.name == rhs.name){
+        return (lhs.lives < rhs.lives);
+    } else {
+        return false;
+    }
+}
+
+
